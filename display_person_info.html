@@ -1,10 +1,6 @@
 {% extends 'widgets/widget_template.html' %}
 {% load custom_template %}
 
-{% block title_color %}{{ title_color|default:'white' }}{% endblock %}
-{% block title_text_color %}{{ title_text_color|default:'rgb(101, 71, 150)' }}{% endblock %}
-{% block body_color %}{{ body_color|default:'white' }}{% endblock %}
-{% block body_text_color %}{{ body_text_color|default:'black' }}{% endblock %}
 {% block custom_title_prop %}{% if title_logo %}style="background-size: auto 60%; background-position: 50%; background-repeat: no-repeat; background-image: url('/app_resource/{{ title_logo }}');"{% endif %}{% endblock %}
 {% block title1 %}{{ title1 }}{% endblock %}
 {% block title2 %}{{ title2 }}{% endblock %}
@@ -27,16 +23,8 @@ of Phantom Cyber Corporation.
 -->
 
 <style>
-.pipl-display-person a:link {
-  color: black;
-}
-
 .pipl-display-person a:hover {
   text-decoration:underline;
-}
-
-.pipl-display-person a:visited {
-  color: black;
 }
 
 .pipl-display-person .wf-table-vertical {
@@ -46,25 +34,25 @@ of Phantom Cyber Corporation.
 
 .pipl-display-person .wf-table-vertical td {
   padding: 5px;
-  border: 1px solid rgb(234, 234, 234);
+  border: 1px solid;
 }
 
 .pipl-display-person .person_table {
-    width: 100%;
-    overflow-x: auto;
+  width: 100%;
+  overflow-x: auto;
 }
 
 .pipl-display-person .dataTable th.widget-th {
-    border-top: 1px solid #eee !important;
+  border-top: 1px solid #eee !important;
 }
 
 .pipl-display-person .dataTable td.widget-td a{
-    font-size: 12px;
-    color: #000;
+  font-size: 12px;
 }
 
 .pipl-display-person .dataTable .glyphicon.glyphicon-dot:before {
-    content: "\25cf"; font-size: 10px;
+  content: "\25cf";
+  font-size: 10px;
 }
 
 .pipl-display-person .wf-h2-style {
@@ -82,6 +70,7 @@ of Phantom Cyber Corporation.
 .pipl-display-person .wf-h5-style {
   font-size : 14px
 }
+
 .pipl-display-person .wf-subheader-style {
   font-size : 12px
 }
