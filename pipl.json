@@ -553,9 +553,6 @@
                     "data_type": "numeric",
                     "example_values": [
                         9785550145
-                    ],
-                    "contains": [
-                        "phone"
                     ]
                 },
                 {
@@ -666,9 +663,6 @@
                     "example_values": [
                         2,
                         6
-                    ],
-                    "contains": [
-                        "user name"
                     ]
                 },
                 {
@@ -803,9 +797,6 @@
                     "example_values": [
                         2,
                         5
-                    ],
-                    "contains": [
-                        "user name"
                     ]
                 },
                 {
