@@ -586,7 +586,7 @@
                     "data_path": "action_result.data.*.people.*.images.*.url",
                     "data_type": "string",
                     "example_values": [
-                        "http://vignette1.wikia.nocookie.net/smallville/images/e/ea/Buddies_forever.jpg"
+                        "http://facebook.com/superman/images/profile.jpg"
                     ],
                     "contains": [
                         "url"
