@@ -1,16 +1,8 @@
-# --
 # File: pipl_connector.py
+# Copyright (c) 2018-2021 Splunk Inc.
 #
-# Copyright (c) Phantom Cyber Corporation, 2018
-#
-# This unpublished material is proprietary to Phantom Cyber.
-# All rights reserved. The methods and
-# techniques described herein are considered trade secrets
-# and/or confidential. Reproduction or distribution, in whole
-# or in part, is forbidden except by express written permission
-# of Phantom Cyber.
-#
-# --
+# SPLUNK CONFIDENTIAL - Use or disclosure of this material in whole or in part
+# without a valid written license from Splunk Inc. is PROHIBITED.
 
 # Phantom App imports
 import phantom.app as phantom
@@ -128,7 +120,7 @@ class PiplConnector(BaseConnector):
         try:
             r = requests.get(PIPL_BASE_URL, params=params)
         except Exception as e:
-            return RetVal(action_result.set_status( phantom.APP_ERROR, "Error Connecting to server. Details: {0}".format(str(e))))
+            return RetVal(action_result.set_status(phantom.APP_ERROR, "Error Connecting to server. Details: {0}".format(str(e))))
 
         return self._process_response(r, action_result)
 
@@ -136,8 +128,8 @@ class PiplConnector(BaseConnector):
 
         if isinstance(cur_obj, dict):
             new_dict = {}
-            for k, v in cur_obj.iteritems():
-                if isinstance(k, basestring) and k.startswith('@'):
+            for k, v in cur_obj.items():
+                if isinstance(k, str) and k.startswith('@'):
                     k = k[1:]
                 new_dict[k] = self._sanatize_data(v)
             return new_dict
@@ -185,7 +177,7 @@ class PiplConnector(BaseConnector):
         url = param.get('url')
         age = param.get('age')
 
-        if not ((first_name and last_name) or (house_no and street and city) or email or phone or url or username):
+        if not ((first_name and last_name) or (house_no and street and city and state) or email or phone or url or username):
             return action_result.set_status(phantom.APP_ERROR, "Not enough information provided to run a search. See documentation for requirements.")
 
         params = {}
@@ -233,6 +225,10 @@ class PiplConnector(BaseConnector):
         elif 'person' in resp_json:
             summary['exact_match_found'] = True
             resp_json['people'] = [resp_json.pop('person')]
+        else:
+            summary['exact_match_found'] = False
+            summary['possible_matches'] = 0
+            resp_json['people'] = []
 
         action_result.add_data(resp_json)
 
@@ -263,7 +259,7 @@ if __name__ == '__main__':
     pudb.set_trace()
 
     if (len(sys.argv) < 2):
-        print "No test json specified as input"
+        print("No test json specified as input")
         exit(0)
 
     with open(sys.argv[1]) as f:
@@ -274,6 +270,6 @@ if __name__ == '__main__':
         connector = PiplConnector()
         connector.print_progress_message = True
         ret_val = connector._handle_action(json.dumps(in_json), None)
-        print (json.dumps(json.loads(ret_val), indent=4))
+        print(json.dumps(json.loads(ret_val), indent=4))
 
     exit(0)
