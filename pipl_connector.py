@@ -15,15 +15,16 @@
 #
 #
 # Phantom App imports
+import json
+
 import phantom.app as phantom
-from phantom.base_connector import BaseConnector
+import requests
+from bs4 import BeautifulSoup
 from phantom.action_result import ActionResult
+from phantom.base_connector import BaseConnector
 
 # Usage of the consts file is recommended
 from pipl_consts import *
-import requests
-import json
-from bs4 import BeautifulSoup
 
 
 class RetVal(tuple):
@@ -128,7 +129,7 @@ class PiplConnector(BaseConnector):
             params = {'key': self._api_key}
 
         try:
-            r = requests.get(PIPL_BASE_URL, params=params)
+            r = requests.get(PIPL_BASE_URL, params=params, timeout=DEFAULT_TIMEOUT)
         except Exception as e:
             return RetVal(action_result.set_status(phantom.APP_ERROR, "Error Connecting to server. Details: {0}".format(str(e))))
 
@@ -187,8 +188,11 @@ class PiplConnector(BaseConnector):
         url = param.get('url')
         age = param.get('age')
 
-        if not ((first_name and last_name) or (house_no and street and city and state) or email or phone or url or username):
-            return action_result.set_status(phantom.APP_ERROR, "Not enough information provided to run a search. See documentation for requirements.")
+        if not ((first_name and last_name) or (
+                house_no and street and city and state) or email or phone or url or username):
+            return action_result.set_status(
+                phantom.APP_ERROR,
+                "Not enough information provided to run a search. See documentation for requirements.")
 
         params = {}
 
@@ -265,12 +269,13 @@ class PiplConnector(BaseConnector):
 if __name__ == '__main__':
 
     import sys
+
     import pudb
     pudb.set_trace()
 
     if (len(sys.argv) < 2):
         print("No test json specified as input")
-        exit(0)
+        sys.exit(0)
 
     with open(sys.argv[1]) as f:
         in_json = f.read()
@@ -282,4 +287,4 @@ if __name__ == '__main__':
         ret_val = connector._handle_action(json.dumps(in_json), None)
         print(json.dumps(json.loads(ret_val), indent=4))
 
-    exit(0)
+    sys.exit(0)
