@@ -14,3 +14,5 @@
 # and limitations under the License.
 PIPL_EXAMPLE_EMAIL = "clark.kent@example.com"
 PIPL_BASE_URL = "https://api.pipl.com/search"
+
+DEFAULT_TIMEOUT = 30  # seconds
