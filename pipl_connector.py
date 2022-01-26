@@ -15,15 +15,16 @@
 #
 #
 # Phantom App imports
+import json
+
 import phantom.app as phantom
-from phantom.base_connector import BaseConnector
+import requests
+from bs4 import BeautifulSoup
 from phantom.action_result import ActionResult
+from phantom.base_connector import BaseConnector
 
 # Usage of the consts file is recommended
 from pipl_consts import *
-import requests
-import json
-from bs4 import BeautifulSoup
 
 
 class RetVal(tuple):
@@ -187,8 +188,11 @@ class PiplConnector(BaseConnector):
         url = param.get('url')
         age = param.get('age')
 
-        if not ((first_name and last_name) or (house_no and street and city and state) or email or phone or url or username):
-            return action_result.set_status(phantom.APP_ERROR, "Not enough information provided to run a search. See documentation for requirements.")
+        if not ((first_name and last_name) or (
+                house_no and street and city and state) or email or phone or url or username):
+            return action_result.set_status(
+                phantom.APP_ERROR,
+                "Not enough information provided to run a search. See documentation for requirements.")
 
         params = {}
 
@@ -265,6 +269,7 @@ class PiplConnector(BaseConnector):
 if __name__ == '__main__':
 
     import sys
+
     import pudb
     pudb.set_trace()
 
