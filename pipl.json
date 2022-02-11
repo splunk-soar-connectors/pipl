@@ -19,7 +19,6 @@
     "app_wizard_version": "1.0.0",
     "python_version": "3",
     "latest_tested_versions": [
-        "Cloud API, March 9, 2021"
     ],
     "configuration": {
         "api_key": {
