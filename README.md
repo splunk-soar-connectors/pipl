@@ -1,7 +1,7 @@
 # Pipl
 
 Publisher: Splunk Community \
-Connector Version: 3.0.0 \
+Connector Version: 3.0.1 \
 Product Vendor: Pipl \
 Product Name: Pipl \
 Minimum Product Version: 5.1.0
