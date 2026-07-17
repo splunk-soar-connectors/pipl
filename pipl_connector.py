@@ -120,8 +120,10 @@ class PiplConnector(BaseConnector):
 
         try:
             r = requests.get(PIPL_BASE_URL, params=params, timeout=DEFAULT_TIMEOUT)
-        except Exception as e:
-            return RetVal(action_result.set_status(phantom.APP_ERROR, f"Error Connecting to server. Details: {e!s}"))
+        except requests.exceptions.RequestException:
+            return RetVal(action_result.set_status(phantom.APP_ERROR, "Error connecting to Pipl"))
+        except Exception:
+            return RetVal(action_result.set_status(phantom.APP_ERROR, "Unexpected error while connecting to Pipl"))
 
         return self._process_response(r, action_result)
 
