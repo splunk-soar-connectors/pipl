@@ -1,9 +1,9 @@
 # Pipl
 
-Publisher: Splunk Community \
-Connector Version: 3.0.1 \
-Product Vendor: Pipl \
-Product Name: Pipl \
+Publisher: Splunk Community <br>
+Connector Version: 3.0.1 <br>
+Product Vendor: Pipl <br>
+Product Name: Pipl <br>
 Minimum Product Version: 5.1.0
 
 This app integrates with Pipl to perform an investigative action
@@ -18,14 +18,14 @@ VARIABLE | REQUIRED | TYPE | DESCRIPTION
 
 ### Supported Actions
 
-[test connectivity](#action-test-connectivity) - Validate API Key with Pipl server \
+[test connectivity](#action-test-connectivity) - Validate API Key with Pipl server <br>
 [get user](#action-get-user) - Get information about a person
 
 ## action: 'test connectivity'
 
 Validate API Key with Pipl server
 
-Type: **test** \
+Type: **test** <br>
 Read only: **True**
 
 #### Action Parameters
@@ -40,7 +40,7 @@ No Output
 
 Get information about a person
 
-Type: **investigate** \
+Type: **investigate** <br>
 Read only: **True**
 
 Please enter all the information you have about the person you're searching for. At least one field is required: Email, Phone, Username, Url, Name (First + Last), or Full Address (House Number + Street + City + State).
@@ -233,7 +233,7 @@ ______________________________________________________________________
 
 Auto-generated Splunk SOAR Connector documentation.
 
-Copyright 2025 Splunk Inc.
+Copyright 2026 Splunk Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
